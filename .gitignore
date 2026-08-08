@@ -2,3 +2,11 @@ bin/
 dist/
 lib/
 .claude/settings.local.json
+
+# credenciais e config local
+.env
+*.properties
+!*.properties.example
+
+# base de dados
+*.fdb

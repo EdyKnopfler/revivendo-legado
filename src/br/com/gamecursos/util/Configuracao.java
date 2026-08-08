@@ -77,7 +77,7 @@ public class Configuracao {
 	public Connection conectar() throws Exception {
 		Class.forName("org.firebirdsql.jdbc.FBDriver");
 		Connection connection = DriverManager.getConnection(
-			"jdbc:firebirdsql:" + ip + "/3050:" + arquivo + "?lc_ctype=WIN1252",
+			"jdbc:firebirdsql:" + ip + "/3050:" + arquivo + "?lc_ctype=UTF8",
 			usuario, senha
 		);
 		connection.setAutoCommit(false);

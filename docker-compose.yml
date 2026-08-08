@@ -1,0 +1,19 @@
+services:
+  firebird:
+    image: jacobalberty/firebird:v5.0
+    container_name: estoque-firebird
+    restart: unless-stopped
+    environment:
+      ISC_PASSWORD: ${FIREBIRD_SYSDBA_PASSWORD:?defina em .env}
+      FIREBIRD_DATABASE: estoque.fdb
+      FIREBIRD_USER: ${FIREBIRD_USER:?defina em .env}
+      FIREBIRD_PASSWORD: ${FIREBIRD_PASSWORD:?defina em .env}
+    ports:
+      - "3050:3050"
+    volumes:
+      - firebird-data:/firebird/data
+      - ./docker/initdb/01-schema.sh:/docker-entrypoint-initdb.d/01-schema.sh:ro
+      - ./Metadados.sql:/docker-entrypoint-initdb.d/sql/Metadados.sql:ro
+
+volumes:
+  firebird-data:
