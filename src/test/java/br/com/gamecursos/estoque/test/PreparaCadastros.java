@@ -26,43 +26,52 @@ public class PreparaCadastros {
 		this.connection = connection;
 	}
 	
+	public Cliente criarCliente(String nome) throws SQLException, ConflitoConcorrenciaException {
+		Cliente c = new Cliente();
+		c.setNome(nome);
+		new ClienteDao(connection).incluir(c);
+		return c;
+	}
+
+	public Fornecedor criarFornecedor(String nome) throws SQLException, ConflitoConcorrenciaException {
+		Fornecedor f = new Fornecedor();
+		f.setNome(nome);
+		new FornecedorDao(connection).incluir(f);
+		return f;
+	}
+
+	public Produto criarProduto(String nome, Fornecedor fornecedor) throws SQLException, ConflitoConcorrenciaException {
+		Produto p = new Produto();
+		p.setNome(nome);
+		p.setFornecedor(fornecedor);
+		new ProdutoDao(connection).incluir(p);
+		return p;
+	}
+
+	public void darEntrada(Produto produto, int quantidade) throws ConflitoConcorrenciaException {
+		new EstoqueDao(connection).entrada(produto, quantidade);
+	}
+
 	public void clienteFornecedorProdutos() throws SQLException, ConflitoConcorrenciaException {
-		cliente = new Cliente();
-		cliente.setNome("Kânia");
-		ClienteDao cliDao = new ClienteDao(connection);
-		cliDao.incluir(cliente);
-		
-		fornecedor = new Fornecedor();
-		fornecedor.setNome("Móveis Planejados S/A");
-		FornecedorDao fornDao = new FornecedorDao(connection);
-		fornDao.incluir(fornecedor);
-		
-		sofa = new Produto();
-		sofa.setNome("Sofá");
-		sofa.setFornecedor(fornecedor);
-		
-		cama = new Produto();
-		cama.setNome("Cama");
-		cama.setFornecedor(fornecedor);
-		
-		guardaRoupa = new Produto();
-		guardaRoupa.setNome("Guarda-Roupa");
-		guardaRoupa.setFornecedor(fornecedor);
-		
-		ProdutoDao prodDao = new ProdutoDao(connection);
-		prodDao.incluir(sofa);
-		prodDao.incluir(cama);
-		prodDao.incluir(guardaRoupa);
-		
+		cliente = criarCliente("Kânia");
+		fornecedor = criarFornecedor("Móveis Planejados S/A");
+
+		sofa = criarProduto("Sofá", fornecedor);
+		cama = criarProduto("Cama", fornecedor);
+		guardaRoupa = criarProduto("Guarda-Roupa", fornecedor);
+
 		// Faz de conta que já há mais pedidos :)
-		EstoqueDao estDao = new EstoqueDao(connection);
-		estDao.entrada(sofa, 10);
-		estDao.entrada(cama, 10);
-		estDao.entrada(guardaRoupa, 10);
+		darEntrada(sofa, 10);
+		darEntrada(cama, 10);
+		darEntrada(guardaRoupa, 10);
 	}
 
 	public Cliente getCliente() {
 		return cliente;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
 	}
 
 	public Produto getSofa() {

@@ -25,7 +25,5 @@ Legado didático (curso GameCursos), não está em produção — manutenção
   aconteceu de `PreparaCadastros.esvaziar()` (`DELETE` sem filtro) apagar
   cadastro real feito à mão. Testes usam o segundo por padrão
   ([Conexao.java](src/test/java/br/com/gamecursos/estoque/test/Conexao.java)).
-
-## Pendências conhecidas
-
-- Só `PedidoDao`/`PedidoRep` têm teste; `Cliente`/`Produto`/`Compra`/`Fornecedor` não têm nenhum.
+- **Estoque negativo é intencional**, não bug: o relatório de estoque usa
+  isso pra sinalizar o que precisa comprar ([EstoqueDaoTest.java](src/test/java/br/com/gamecursos/estoque/test/estoque/EstoqueDaoTest.java)).
