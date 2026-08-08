@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Sistema de Estoque",
+            "request": "launch",
+            "mainClass": "br.com.gamecursos.estoque.Aplicacao",
+            "projectName": "estoque"
+        },
+        {
+            "type": "java",
+            "name": "Configurar conexão com o banco",
+            "request": "launch",
+            "mainClass": "br.com.gamecursos.bd.Configurador",
+            "projectName": "estoque"
+        }
+    ]
+}
