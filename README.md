@@ -110,6 +110,18 @@ set -a; source .env; set +a
 adição/remoção de item, exclusão de pedido) e confere o saldo de estoque a
 cada passo.
 
+**Os testes rodam num banco separado (`estoque-test.fdb`), não no
+`estoque.fdb` que você usa manualmente pela aplicação.** Isso existe porque
+`PreparaCadastros.esvaziar()`, chamado ao final da suíte, faz `DELETE` sem
+filtro nas tabelas de cadastro — se apontasse para o mesmo banco da
+aplicação, apagaria qualquer dado real que você tivesse cadastrado na mão
+(já aconteceu durante o desenvolvimento deste projeto). O container cria os
+dois bancos (mesmo schema, mesmas permissões) já na primeira inicialização;
+para apontar os testes para outro servidor/banco, use as variáveis de
+ambiente `FIREBIRD_TEST_HOST`, `FIREBIRD_TEST_DATABASE`,
+`FIREBIRD_TEST_USER` e `FIREBIRD_TEST_PASSWORD` (veja
+[Conexao.java](src/test/java/br/com/gamecursos/estoque/test/Conexao.java)).
+
 ## Estrutura
 
 ```

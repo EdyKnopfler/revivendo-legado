@@ -8,7 +8,7 @@ public class Conexao {
 	public static Connection abrir() throws RuntimeException {
 		try {
 			String host = getenv("FIREBIRD_TEST_HOST", "localhost");
-			String arquivo = getenv("FIREBIRD_TEST_DATABASE", "/firebird/data/estoque.fdb");
+			String arquivo = getenv("FIREBIRD_TEST_DATABASE", "/firebird/data/estoque-test.fdb");
 			String usuario = getenv("FIREBIRD_TEST_USER", System.getenv("FIREBIRD_USER"));
 			String senha = getenv("FIREBIRD_TEST_PASSWORD", System.getenv("FIREBIRD_PASSWORD"));
 
