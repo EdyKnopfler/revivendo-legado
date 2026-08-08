@@ -14,7 +14,6 @@ public class Configurador extends JFrame {
 	private JTextField ip, arquivo, usuario, senha, charset;
 
 	public Configurador() {
-		setSize(420, 220);
 		setTitle("Configurar Conexão");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -44,6 +43,7 @@ public class Configurador extends JFrame {
 		campos.add(new JLabel("Charset"), gbc);
 
 		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.weightx = 1.0;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		campos.add(ip, gbc);
@@ -58,6 +58,8 @@ public class Configurador extends JFrame {
 		
 		JButton bd = new JButton("...");
 		bd.addActionListener(new SelecionaBD());
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.weightx = 0.0;
 		gbc.gridx = 2;
 		gbc.gridy = 1;
 		campos.add(bd, gbc);
@@ -74,6 +76,9 @@ public class Configurador extends JFrame {
 		setLayout(new BorderLayout());
 		getContentPane().add(campos, BorderLayout.CENTER);
 		getContentPane().add(botoes, BorderLayout.SOUTH);
+
+		pack();
+		setLocationRelativeTo(null);
 	}
 	
 	private class SelecionaBD implements ActionListener {
