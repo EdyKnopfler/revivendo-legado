@@ -21,6 +21,12 @@ Legado didático (curso GameCursos), não está em produção — manutenção
   `docker/initdb/01-schema.sh` faz os `GRANT`s. Só roda de novo sozinho em
   volume vazio; mudança de schema com volume já populado precisa de `isql`
   manual ou `docker compose down -v`.
+- **Volumes cobrem `/firebird/data` + `/firebird/etc` + `/firebird/system`**,
+  não só `data`: é `etc/firebird.conf` que a imagem usa pra saber que o
+  volume não é novo (senão tenta rodar o schema de novo a cada recriação de
+  contêiner, não só restart), e `system/security5.fdb` guarda o login do
+  `FIREBIRD_USER` (senão some numa recriação, já que o `CREATE USER` da
+  imagem só dispara se o `.fdb` principal ainda não existir).
 - **Dois bancos** (`estoque.fdb` dev, `estoque-test.fdb` teste): já
   aconteceu de `PreparaCadastros.esvaziar()` (`DELETE` sem filtro) apagar
   cadastro real feito à mão. Testes usam o segundo por padrão
