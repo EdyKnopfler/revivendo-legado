@@ -2,9 +2,11 @@ package br.com.gamecursos.util;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import javax.swing.*;
 
-import org.firebirdsql.management.FBBackupManager;
+import org.firebirdsql.management.FBStreamingBackupManager;
 
 import br.com.gamecursos.estoque.Aplicacao;
 
@@ -63,7 +65,7 @@ public class BackupForm extends JDialog {
 		campos.add(fdb, gbc);
 		gbc.gridy = 1;
 		gbc.gridx = 0;
-		campos.add(new JLabel("Backup:"), gbc);
+		campos.add(new JLabel("Backup (arquivo local):"), gbc);
 		gbc.gridx = 1;
 		campos.add(fbk, gbc);
 		
@@ -87,15 +89,15 @@ public class BackupForm extends JDialog {
 	private class AcaoBackup implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			FBBackupManager backup = new FBBackupManager();
+			FBStreamingBackupManager backup = new FBStreamingBackupManager();
 			backup.setUser(config.getUsuario());
 			backup.setPassword(config.getSenha());
 			backup.setHost(config.getIp());
 			backup.setPort(3050);
 			backup.setDatabase(fdb.getText());
-			backup.setBackupPath(fbk.getText());
-			
-			try {
+
+			try (FileOutputStream saida = new FileOutputStream(fbk.getText())) {
+				backup.setBackupOutputStream(saida);
 				backup.backupDatabase();
 				showMessageDialog(null, "Backup efetuado com sucesso.", "Backup", INFORMATION_MESSAGE);
 				dispose();
@@ -115,16 +117,16 @@ public class BackupForm extends JDialog {
 				== NO_OPTION)
 				return;
 			
-			FBBackupManager restaurar = new FBBackupManager();
+			FBStreamingBackupManager restaurar = new FBStreamingBackupManager();
 			restaurar.setUser(config.getUsuario());
 			restaurar.setPassword(config.getSenha());
 			restaurar.setHost(config.getIp());
 			restaurar.setPort(3050);
 			restaurar.setDatabase(fdb.getText());
-			restaurar.setBackupPath(fbk.getText());
 			restaurar.setRestoreReplace(true);
-			
-			try {
+
+			try (FileInputStream entrada = new FileInputStream(fbk.getText())) {
+				restaurar.setRestoreInputStream(entrada);
 				app.desconectar();
 				restaurar.restoreDatabase();
 				showMessageDialog(null, "Restauração efetuada com sucesso.", "Backup", INFORMATION_MESSAGE);
