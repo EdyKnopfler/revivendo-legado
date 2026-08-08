@@ -1,6 +1,5 @@
-bin/
-dist/
-lib/
+target/
+dependency-reduced-pom.xml
 .claude/settings.local.json
 
 # credenciais e config local
