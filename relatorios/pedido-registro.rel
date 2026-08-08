@@ -1,0 +1,7 @@
+  <tr>
+     <td class="codigo"><#CODIGO></td>
+     <td class="produto"><#PRODUTO></td>
+     <td class="valor"><#PRECO_UNITARIO></td>
+     <td class="valor"><#QUANTIDADE></td>
+     <td class="valor"><#TOTAL></td>
+  </tr>

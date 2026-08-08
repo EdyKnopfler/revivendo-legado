@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="utf-8">
+   <title>Relatório de Clientes</title>
+   <style>
+      body, td, th {
+         font-family: Arial, sans-serif;
+         font-size:   10px;
+      }
+      table {
+         width: 1500px;
+      }
+      th {
+          padding:    3px;
+          background: navy;
+          color:      white;
+          text-align: left;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Relatório de Clientes</h1>
+   
+   <table>
+      <thead>
+         <tr>
+            <th>CÓDIGO</th>
+            <th>NOME</th>
+            <th>NASCIMENTO</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>TELEFONE</th>
+            <th>CELULAR</th>
+            <th>ENDEREÇO</th>
+            <th>BAIRRO</th>
+            <th>CIDADE</th>
+            <th>ESTADO</th>
+            <th>CEP</th>
+            <th>E-MAIL</th>
+            <th>END. COMERCIAL</th>
+            <th>CNPJ</th>
+         </tr>
+      </thead>
+      <tbody>

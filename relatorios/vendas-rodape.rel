@@ -1,0 +1,8 @@
+            <th colspan="4">TOTAL GERAL</th>
+            <td class="total_geral"><$total_compra></td>
+            <td>&nbsp;</td>
+            <td class="total_geral"><$total_venda></td>
+         </tbody>
+      </table>
+   </body>
+</html>

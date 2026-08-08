@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="utf-8">
+   <title>Relatório de Pedidos</title>
+   <style>
+      body, td, th {
+         font-family: Arial, sans-serif;
+         font-size:   10px;
+      }
+      th {
+          padding:    3px;
+          background: navy;
+          color:      white;
+          text-align: left;
+      }
+      .codigo, .data {
+          width: 75px;
+      }
+      .cliente {
+          width: 300px;
+      }
+
+      .total {
+         text-align: right;
+         width: 100px;
+      }
+      .total_geral {
+         text-align: right;
+         font-weight: bold;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Relatório de Pedidos</h1>
+   <table>
+      <thead>
+         <tr>
+            <th>CÓDIGO</th>
+            <th>DATA</th>
+            <th>CLIENTE</th>
+            <th>TOTAL</th>
+         </tr>
+      </thead>
+      <tbody>

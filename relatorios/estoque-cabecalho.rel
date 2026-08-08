@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="utf-8">
+   <title>Relatório de Estoque</title>
+   <style>
+      body, td, th {
+         font-family: Arial, sans-serif;
+         font-size:   10px;
+      }
+      th {
+          padding:    3px;
+          background: navy;
+          color:      white;
+          text-align: left;
+      }
+	  .codigo {
+	     width: 75px;
+	  }
+      .nome {
+         width: 300px;
+      }
+	  .fornecedor {
+	     width: 300px;
+	  }
+      .quantidade {
+         width: 75px;
+         text-align: center;
+      }
+      .custo_unit {
+         width: 75px;
+         text-align: right;
+      }
+      .custo_total {
+         width: 75px;
+         text-align: right;
+      }
+      .total {
+         text-align: right;
+         font-weight: bold;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Relatório de Estoque</h1>
+   <table>
+      <thead>
+         <tr>
+            <th>CÓDIGO</th>
+            <th>PRODUTO</th>
+            <th>FORNECEDOR</th>
+            <th>QTD. COMPRADA</th>
+            <th>QTD. VENDIDA</th>
+            <th>QUANTIDADE</th>
+            <th>CUSTO UNIT.</th>
+            <th>CUSTO TOTAL</th>
+         </tr>
+      </thead>
+      <tbody>

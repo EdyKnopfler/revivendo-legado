@@ -1,0 +1,6 @@
+            <th colspan="3">TOTAL GERAL</th>
+            <td class="total_geral"><$total></td>
+         </tbody>
+      </table>
+   </body>
+</html>

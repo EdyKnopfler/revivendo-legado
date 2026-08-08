@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="utf-8">
+   <title>Pedido</title>
+   <style>
+      body, td, th {
+         font-family: Arial, sans-serif;
+         font-size:   10px;
+      }
+      #cabecalho {
+         height: 100px;
+         padding: 10px;
+         border-bottom: 2px inset navy;
+         margin-bottom: 20px;
+      }
+      #logo {
+         float: left;
+         margin-right: 20px;
+      }
+      table {
+         margin: 0px auto;
+      }
+      th {
+          padding:    3px;
+          background: navy;
+          color:      white;
+          text-align: left;
+      }
+      .codigo {
+         width: 75px;
+      }
+      .produto {
+         width: 400px;
+      }
+      .valor {
+         width: 100px;
+         text-align: right;
+      }
+      .total_geral {
+         text-align: right;
+         font-weight: bold;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="cabecalho">
+      <img src="pedido.jpg" height="100" id="logo">
+      <b>Pedido n°:</b> <$num_pedido> <br>
+      <b>Cliente:</b> <$cliente> <br>
+      <b>Data:</b> <$data>
+   </div>
+   
+   <table>
+      <tr>
+         <th>CÓDIGO</th>
+         <th>PRODUTO</th>
+         <th>PREÇO UNIT.</th>
+         <th>QUANT.</th>
+         <th>TOTAL ITEM.</th>
+      </tr>

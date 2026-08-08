@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="utf-8">
+   <title>Relatório de Vendas</title>
+   <style>
+      body, td, th {
+         font-family: Arial, sans-serif;
+         font-size:   10px;
+      }
+      th {
+          padding:    3px;
+          background: navy;
+          color:      white;
+          text-align: left;
+      }
+      .codigo {
+          width: 75px;
+      }
+      .fornecedor, .produto {
+          width: 300px;
+      }
+
+      .qtd_adquirida, .qto_custou, .qtd_vendida, .total_vendido {
+         text-align: right;
+         width: 100px;
+      }
+      .total_geral {
+         text-align: right;
+         font-weight: bold;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Relatório de Vendas</h1>
+   <table>
+      <thead>
+         <tr>
+            <th>CÓDIGO</th>
+            <th>FORNECEDOR</th>
+            <th>PRODUTO</th>
+            <th>QTD. ADQUIRIDA</th>
+            <th>QTO. CUSTOU</th>
+            <th>QTD. VENDIDA</th>
+            <th>TOTAL VENDIDO</th>
+         </tr>
+      </thead>
+      <tbody>

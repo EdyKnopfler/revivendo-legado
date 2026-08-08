@@ -1,0 +1,9 @@
+<tr>
+   <td class="codigo"><#CODIGO></td>
+   <td class="nome"><#NOME></td>
+   <td class="quantidade"><#QTD_COMPRADA></td>
+   <td class="quantidade"><#QTD_VENDIDA></td>
+   <td class="quantidade"><#QUANTIDADE></td>
+   <td class="custo_unit"><#PRECO_CUSTO_UNIT></td>
+   <td class="custo_total"><#CUSTO_TOTAL></td>
+</tr>

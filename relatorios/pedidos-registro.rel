@@ -1,0 +1,6 @@
+<tr>
+   <td class="codigo"><#ID_PEDIDO></td>
+   <td class="data"><#DATA></td>
+   <td class="cliente"><#CLIENTE></td>
+   <td class="total"><#TOTAL></td>
+</tr>

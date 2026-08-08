@@ -1,0 +1,17 @@
+<tr>
+            <td class="id"><#ID_CLIENTE></td>
+            <td class="nome"><#NOME></td>
+            <td class="nascimento"><#NASCIMENTO></td>
+            <td class="cpf"><#CPF></td>
+            <td class="rg"><#RG></td>
+            <td class="telefone"><#TELEFONE></td>
+            <td class="celular"><#CELULAR></td>
+            <td class="endereco"><#ENDERECO></td>
+            <td class="bairro"><#BAIRRO></td>
+            <td class="cidade"><#CIDADE></td>
+            <td class="estado"><#ESTADO></td>
+            <td class="cep"><#CEP></td>
+            <td class="email"><#EMAIL></td>
+            <td class="end_comercial"><#ENDERECO_COMERCIAL></td>
+            <td class="cnpj"><#CNPJ></td>
+</tr>

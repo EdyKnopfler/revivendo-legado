@@ -1,0 +1,6 @@
+            <th colspan="6">TOTAL</th>
+            <td class="total"><$total></td>
+         </tbody>
+      </table>
+   </body>
+</html>

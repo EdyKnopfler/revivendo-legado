@@ -1,0 +1,9 @@
+<tr>
+   <td class="codigo"><#CODIGO></td>
+   <td class="fornecedor"><#FORNECEDOR></td>
+   <td class="produto"><#NOME></td>
+   <td class="qtd_adquirida"><#QTD_ADQUIRIDA></td>
+   <td class="qto_custou"><#QTO_CUSTOU></td>
+   <td class="qtd_vendida"><#QTD_VENDIDA></td>
+   <td class="total_vendido"><#TOTAL_VENDA></td>
+</tr>
