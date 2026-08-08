@@ -3,8 +3,12 @@
 Legado didático (curso GameCursos), não está em produção — manutenção
 é exercício. Uso: [README.md](README.md). Aqui só o "porquê" não óbvio.
 
-- **Charset**: `WIN1252`/`WIN_PTBR` → `UTF8`/`UNICODE_CI_AI`. Mesmo
-  comportamento case-insensitive do original, ganha accent-insensitive.
+- **Charset da conexão é configurável** (`charset` em `pedidos.properties`,
+  via a tela `Configurador`) — a aplicação não assume nenhum charset fixo,
+  então roda tanto contra bancos novos (UTF8/`UNICODE_CI_AI`) quanto contra
+  uma base legada existente (ex.: WIN1252/`WIN_PTBR`). `Metadados.sql`/
+  `01-schema.sh` só criam banco novo em UTF8 — não servem pra recriar um
+  schema legado do zero, só pra bancos novos.
 - **Container roda como root**: qualquer bind mount onde o *servidor*
   escreve vira arquivo `root:root` ilegível no host, sem sudo.
 - **Backup usa `FBStreamingBackupManager`**, não `FBBackupManager`: os

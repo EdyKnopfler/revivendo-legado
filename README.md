@@ -43,6 +43,7 @@ do projeto:
 | Arquivo | `/firebird/data/estoque.fdb` |
 | Usuário | `FIREBIRD_USER` do `.env` |
 | Senha | `FIREBIRD_PASSWORD` do `.env` |
+| Charset | `UTF8` (para conectar numa base legada, use o charset dela, ex.: `WIN1252`) |
 
 ## 4. Rodar a aplicação
 

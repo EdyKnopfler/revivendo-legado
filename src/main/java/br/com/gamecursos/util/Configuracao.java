@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class Configuracao {
 	
-	private String ip, arquivo, usuario, senha, backup;
+	private String ip, arquivo, usuario, senha, backup, charset;
 
 	public String getIp() {
 		return ip;
@@ -45,11 +45,19 @@ public class Configuracao {
 	public String getBackup() {
 		return backup;
 	}
-	
+
 	public void setBackup(String backup) {
 		this.backup = backup;
 	}
-	
+
+	public String getCharset() {
+		return charset;
+	}
+
+	public void setCharset(String charset) {
+		this.charset = charset;
+	}
+
 	public void carregar(String arq) throws Exception {
 		Properties prop = new Properties();
 		FileInputStream leitura = new FileInputStream(arq);
@@ -60,8 +68,9 @@ public class Configuracao {
 		usuario = prop.getProperty("usuario");
 		senha = decriptografar(prop.getProperty("senha"));
 		backup = prop.getProperty("backup");
+		charset = prop.getProperty("charset", "UTF8");
 	}
-	
+
 	public void salvar(String arq) throws Exception {
 		Properties prop = new Properties();
 		prop.setProperty("ip", ip);
@@ -69,6 +78,7 @@ public class Configuracao {
 		prop.setProperty("usuario", usuario);
 		prop.setProperty("senha", criptografar(senha));
 		prop.setProperty("backup", backup);
+		prop.setProperty("charset", charset != null ? charset : "UTF8");
 		FileOutputStream escrita = new FileOutputStream(arq);
 		prop.store(escrita, "");
 		escrita.close();
@@ -77,7 +87,7 @@ public class Configuracao {
 	public Connection conectar() throws Exception {
 		Class.forName("org.firebirdsql.jdbc.FBDriver");
 		Connection connection = DriverManager.getConnection(
-			"jdbc:firebirdsql:" + ip + "/3050:" + arquivo + "?lc_ctype=UTF8",
+			"jdbc:firebirdsql:" + ip + "/3050:" + arquivo + "?lc_ctype=" + charset,
 			usuario, senha
 		);
 		connection.setAutoCommit(false);

@@ -11,24 +11,26 @@ public class Configurador extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private JTextField ip, arquivo, usuario, senha;
-	
+	private JTextField ip, arquivo, usuario, senha, charset;
+
 	public Configurador() {
-		setSize(420, 200);
+		setSize(420, 220);
 		setTitle("Configurar Conexão");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
+
 		ip = new JTextField(25);
 		arquivo = new JTextField(25);
 		usuario = new JTextField(25);
 		senha = new JPasswordField(25);
-		
+		charset = new JTextField(25);
+		charset.setText("UTF8");
+
 		JPanel campos = new JPanel();
 		campos.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5, 5);
 		gbc.anchor = GridBagConstraints.WEST;
-		
+
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		campos.add(new JLabel("IP"), gbc);
@@ -38,7 +40,9 @@ public class Configurador extends JFrame {
 		campos.add(new JLabel("Usuário"), gbc);
 		gbc.gridy++;
 		campos.add(new JLabel("Senha"), gbc);
-		
+		gbc.gridy++;
+		campos.add(new JLabel("Charset"), gbc);
+
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
@@ -49,6 +53,8 @@ public class Configurador extends JFrame {
 		campos.add(usuario, gbc);
 		gbc.gridy++;
 		campos.add(senha, gbc);
+		gbc.gridy++;
+		campos.add(charset, gbc);
 		
 		JButton bd = new JButton("...");
 		bd.addActionListener(new SelecionaBD());
@@ -107,6 +113,7 @@ public class Configurador extends JFrame {
 		    		arquivo.setText(c.getArquivo());
 		    		usuario.setText(c.getUsuario());
 		    		senha.setText(c.getSenha());
+		    		charset.setText(c.getCharset());
 		    	}
 		    	catch (Exception ex) {
 		    		ex.printStackTrace();
@@ -136,6 +143,7 @@ public class Configurador extends JFrame {
 		    		c.setArquivo(arquivo.getText());
 		    		c.setUsuario(usuario.getText());
 		    		c.setSenha(senha.getText());
+		    		c.setCharset(charset.getText());
 		    		c.salvar(caminho);
 		    	}
 		    	catch (Exception ex) {

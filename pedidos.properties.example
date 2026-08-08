@@ -1,5 +1,6 @@
 arquivo=/firebird/data/estoque.fdb
 backup=/home/user/estoque.fbk
+charset=UTF8
 ip=localhost
 senha=NAO EDITE ESTE CAMPO A MAO
 usuario=estoque
