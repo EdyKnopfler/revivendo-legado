@@ -25,13 +25,17 @@ public class FornecedorDao {
 				"   email, cnpj, inscricao_estadual, id_fornecedor" +
 				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 			);
-			
-			objParaPs(f, ps);
-			ps.setLong(12, id);
-			ps.executeUpdate();
-			ps.close();
-			f.setId(id);
-		} 
+
+			try {
+				objParaPs(f, ps);
+				ps.setLong(12, id);
+				ps.executeUpdate();
+				f.setId(id);
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao incluir fornecedor", e);
@@ -47,12 +51,16 @@ public class FornecedorDao {
 				"   inscricao_estadual = ? " +
 				"WHERE id_fornecedor = ?"
 			);
-			
-			objParaPs(f, ps);	
-			ps.setLong(12, f.getId());
-			ps.executeUpdate();
-			ps.close();
-		} 
+
+			try {
+				objParaPs(f, ps);
+				ps.setLong(12, f.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao alterar fornecedor", e);
@@ -64,10 +72,15 @@ public class FornecedorDao {
 			PreparedStatement ps = connection.prepareStatement(
 				"DELETE FROM fornecedores WHERE id_fornecedor = ?"
 			);
-			
-			ps.setLong(1, f.getId());
-			ps.executeUpdate();
-		} 
+
+			try {
+				ps.setLong(1, f.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao excluir fornecedor", e);

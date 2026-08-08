@@ -39,10 +39,15 @@ public class ItemPedidoDao {
 			PreparedStatement ps = connection.prepareStatement(
 				"DELETE FROM itens_pedido WHERE id_pedido = ?"
 			);
-			
-			ps.setLong(1, p.getId());
-			ps.executeUpdate();
-		} 
+
+			try {
+				ps.setLong(1, p.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao excluir itens do pedido", e);
@@ -57,16 +62,20 @@ public class ItemPedidoDao {
 				"   id_pedido, id_produto, preco_unitario, quantidade, id_item" +
 				") VALUES (?, ?, ?, ?, ?)"
 			);
-			
-			ps.setLong(1, idPedido);
-			ps.setLong(2, i.getProduto().getId());
-			ps.setDouble(3, i.getPrecoUnitario());
-			ps.setInt(4, i.getQuantidade());
-			ps.setLong(5, id);
-			ps.executeUpdate();
-			ps.close();
-			i.setId(id);
-		} 
+
+			try {
+				ps.setLong(1, idPedido);
+				ps.setLong(2, i.getProduto().getId());
+				ps.setDouble(3, i.getPrecoUnitario());
+				ps.setInt(4, i.getQuantidade());
+				ps.setLong(5, id);
+				ps.executeUpdate();
+				i.setId(id);
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao incluir item do pedido", e);

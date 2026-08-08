@@ -37,13 +37,17 @@ public class PedidoDao {
 				"   id_cliente, data, total, id_pedido" +
 				") VALUES (?, ?, ?, ?)"
 			);
-			
-			objParaPs(p, ps);
-			ps.setLong(4, id);
-			ps.executeUpdate();
-			ps.close();
-			p.setId(id);
-			
+
+			try {
+				objParaPs(p, ps);
+				ps.setLong(4, id);
+				ps.executeUpdate();
+				p.setId(id);
+			}
+			finally {
+				ps.close();
+			}
+
 			new ItemPedidoDao(connection).incluirItens(p);
 		}
 		catch (SQLException e) {
@@ -59,16 +63,20 @@ public class PedidoDao {
 				"   id_cliente = ?, data = ?, total = ? " +
 				"WHERE id_pedido = ?"
 			);
-			
-			objParaPs(p, ps);	
-			ps.setLong(4, p.getId());
-			ps.executeUpdate();
-			ps.close();
-			
+
+			try {
+				objParaPs(p, ps);
+				ps.setLong(4, p.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+
 			ItemPedidoDao itemDao = new ItemPedidoDao(connection);
 			itemDao.excluirItens(p);
 			itemDao.incluirItens(p);
-		} 
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao alterar pedido", e);
@@ -80,10 +88,15 @@ public class PedidoDao {
 			PreparedStatement ps = connection.prepareStatement(
 				"DELETE FROM pedidos WHERE id_pedido = ?"
 			);
-			
-			ps.setLong(1, p.getId());
-			ps.executeUpdate();
-		} 
+
+			try {
+				ps.setLong(1, p.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao excluir pedido", e);

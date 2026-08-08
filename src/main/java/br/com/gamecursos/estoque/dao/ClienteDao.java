@@ -27,13 +27,17 @@ public class ClienteDao {
 				"   endereco_comercial, cnpj, referencias, id_cliente " +
 				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 			);
-			
-			objParaPs(c, ps);
-			ps.setLong(16, id);
-			ps.executeUpdate();
-			ps.close();
-			c.setId(id);
-		} 
+
+			try {
+				objParaPs(c, ps);
+				ps.setLong(16, id);
+				ps.executeUpdate();
+				c.setId(id);
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao incluir cliente", e);
@@ -49,12 +53,16 @@ public class ClienteDao {
 				"   email = ?, endereco_comercial = ?, cnpj = ?, referencias = ? " +
 				"WHERE id_cliente = ?"
 			);
-			
-			objParaPs(c, ps);	
-			ps.setLong(16, c.getId());
-			ps.executeUpdate();
-			ps.close();
-		} 
+
+			try {
+				objParaPs(c, ps);
+				ps.setLong(16, c.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao alterar cliente", e);
@@ -66,10 +74,15 @@ public class ClienteDao {
 			PreparedStatement ps = connection.prepareStatement(
 				"DELETE FROM clientes WHERE id_cliente = ?"
 			);
-			
-			ps.setLong(1, c.getId());
-			ps.executeUpdate();
-		} 
+
+			try {
+				ps.setLong(1, c.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao excluir cliente", e);

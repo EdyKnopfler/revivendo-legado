@@ -38,13 +38,17 @@ public class CompraDao {
 				"   id_fornecedor, data, nota, total, id_compra" +
 				") VALUES (?, ?, ?, ?, ?)"
 			);
-			
-			objParaPs(c, ps);
-			ps.setLong(5, id);
-			ps.executeUpdate();
-			ps.close();
-			c.setId(id);
-			
+
+			try {
+				objParaPs(c, ps);
+				ps.setLong(5, id);
+				ps.executeUpdate();
+				c.setId(id);
+			}
+			finally {
+				ps.close();
+			}
+
 			new ItemCompraDao(connection).incluirItens(c);
 		}
 		catch (SQLException e) {
@@ -60,16 +64,20 @@ public class CompraDao {
 				"   id_fornecedor = ?, data = ?, nota = ?, total = ? " +
 				"WHERE id_compra = ?"
 			);
-			
-			objParaPs(c, ps);	
-			ps.setLong(5, c.getId());
-			ps.executeUpdate();
-			ps.close();
-			
+
+			try {
+				objParaPs(c, ps);
+				ps.setLong(5, c.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+
 			ItemCompraDao itemDao = new ItemCompraDao(connection);
 			itemDao.excluirItens(c);
 			itemDao.incluirItens(c);
-		} 
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao alterar compra", e);
@@ -81,10 +89,15 @@ public class CompraDao {
 			PreparedStatement ps = connection.prepareStatement(
 				"DELETE FROM compras WHERE id_compra = ?"
 			);
-			
-			ps.setLong(1, c.getId());
-			ps.executeUpdate();
-		} 
+
+			try {
+				ps.setLong(1, c.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao excluir compra", e);

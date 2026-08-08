@@ -21,10 +21,14 @@ public class EstoqueDao {
 				"WHERE id_produto = ?"
 			);
 
-			ps.setInt(1, quantidade);
-			ps.setLong(2, p.getId());
-			ps.executeUpdate();
-			ps.close();
+			try {
+				ps.setInt(1, quantidade);
+				ps.setLong(2, p.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -39,10 +43,14 @@ public class EstoqueDao {
 				"WHERE id_produto = ?"
 			);
 
-			ps.setInt(1, quantidade);
-			ps.setLong(2, p.getId());
-			ps.executeUpdate();
-			ps.close();
+			try {
+				ps.setInt(1, quantidade);
+				ps.setLong(2, p.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();

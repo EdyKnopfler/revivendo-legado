@@ -37,12 +37,16 @@ public class ProdutoDao {
 				"   id_fornecedor, codigo, nome, preco_custo_unit, id_produto, quantidade" +
 				") VALUES (?, ?, ?, ?, ?, 0)"  // Importante começar com zero!
 			);
-			
-			objParaPs(p, ps);
-			ps.setLong(5, id);
-			ps.executeUpdate();
-			ps.close();
-			p.setId(id);
+
+			try {
+				objParaPs(p, ps);
+				ps.setLong(5, id);
+				ps.executeUpdate();
+				p.setId(id);
+			}
+			finally {
+				ps.close();
+			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -57,12 +61,16 @@ public class ProdutoDao {
 				"   id_fornecedor = ?, codigo = ?, nome = ?, preco_custo_unit = ? " +
 				"WHERE id_produto = ?"
 			);
-			
-			objParaPs(p, ps);	
-			ps.setLong(5, p.getId());
-			ps.executeUpdate();
-			ps.close();
-		} 
+
+			try {
+				objParaPs(p, ps);
+				ps.setLong(5, p.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao alterar produto", e);
@@ -74,10 +82,15 @@ public class ProdutoDao {
 			PreparedStatement ps = connection.prepareStatement(
 				"DELETE FROM produtos WHERE id_produto = ?"
 			);
-			
-			ps.setLong(1, p.getId());
-			ps.executeUpdate();
-		} 
+
+			try {
+				ps.setLong(1, p.getId());
+				ps.executeUpdate();
+			}
+			finally {
+				ps.close();
+			}
+		}
 		catch (SQLException e) {
 			e.printStackTrace();
 			DaoException.relancar("Erro ao excluir produto", e);

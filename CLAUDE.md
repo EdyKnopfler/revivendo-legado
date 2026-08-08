@@ -28,5 +28,4 @@ Legado didático (curso GameCursos), não está em produção — manutenção
 
 ## Pendências conhecidas
 
-- `PreparedStatement` vaza em `incluir`/`alterar` dos DAOs (falta `finally`).
 - Só `PedidoDao`/`PedidoRep` têm teste; `Cliente`/`Produto`/`Compra`/`Fornecedor` não têm nenhum.
