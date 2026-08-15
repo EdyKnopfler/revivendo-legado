@@ -75,7 +75,7 @@ public class FormPedidos extends FormCadastroPadrao<Pedido> {
 		pesquisar.addActionListener(acaoPesq);
 		
 		imprimir = new JButton("Imprimir");
-		URL urlImprimir = Aplicacao.class.getResource("/imprimir.png");		
+		URL urlImprimir = Aplicacao.class.getResource("/rel-pedidos.png");
 		ImageIcon imgImprimir = new ImageIcon(urlImprimir);
 		imprimir.setIcon(imgImprimir);
 		imprimir.addActionListener(new BotaoImprimir());

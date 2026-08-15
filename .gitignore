@@ -11,3 +11,6 @@ dependency-reduced-pom.xml
 # base de dados
 *.fdb
 *.fbk
+
+# relatórios
+*.html

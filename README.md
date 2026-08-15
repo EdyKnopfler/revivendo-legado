@@ -5,6 +5,8 @@ produtos, compras, pedidos), com persistência em Firebird.
 
 Detalhes técnicos e decisões de arquitetura: [CLAUDE.md](CLAUDE.md).
 
+![Screenshot](screenshot.png)
+
 ## Pré-requisitos
 
 - JDK 17+
